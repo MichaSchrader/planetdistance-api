@@ -22,7 +22,9 @@ public class PlanetdistanceApplication {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
 		corsConfiguration.setAllowedOrigins(List.of("https://planetdistance-db4121c26e26.herokuapp.com",
+				"https://planetdistance-db4121c26e26.herokuapp.com",
 				"http://planetdistance.space", "http://www.planetdistance.space",
+				"https://planetdistance.space", "https://www.planetdistance.space",
 				"http://localhost:8000", "http://localhost:4200"));
 		corsConfiguration.setAllowedHeaders(List.of("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Request-With",
