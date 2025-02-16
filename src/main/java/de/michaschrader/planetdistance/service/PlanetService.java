@@ -18,6 +18,6 @@ public class PlanetService {
     }
 
     public List<String> getAllPlanets() {
-        return List.of("Sun","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune");
+        return List.of("Sun","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune","Moon");
     }
 }

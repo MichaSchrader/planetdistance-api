@@ -10,6 +10,7 @@ import static de.michaschrader.planetdistance.planetposition.Neptune.*;
 import static de.michaschrader.planetdistance.planetposition.Saturn.*;
 import static de.michaschrader.planetdistance.planetposition.Uranus.*;
 import static de.michaschrader.planetdistance.planetposition.Venus.*;
+import static de.michaschrader.planetdistance.planetposition.vsop87a_full_emb.*;
 
 public class PlanetPosition {
     private static class Position {
@@ -50,6 +51,7 @@ public class PlanetPosition {
             case "Saturn" -> positionOfSaturn(time);
             case "Uranus" -> positionOfUranus(time);
             case "Neptune" -> positionOfNeptune(time);
+            case "Moon" -> positionOfMoon(time);
             default -> null;
         };
     }
@@ -122,4 +124,15 @@ public class PlanetPosition {
         double z = Neptune_A_Z0(t) + Neptune_A_Z1(t) + Neptune_A_Z2(t) + Neptune_A_Z3(t) + Neptune_A_Z4(t) + Neptune_A_Z5(t);
         return new Position(x, y, z);  // rectangular Heliocentric coordinates in AU
     }
+
+    private static Position positionOfMoon(double t)
+    {
+        //This converts the Earth-Moon-barycenter (emb) into the Coordinate of the Earth Moon.
+        Position earth = positionOfEarth(t);
+        double x = (emb_x(t) - earth.x)*(1 + 1 / 0.01230073677);
+        double y = (emb_y(t) - earth.y)*(1 + 1 / 0.01230073677);
+        double z = (emb_z(t) - earth.z)*(1 + 1 / 0.01230073677);
+        return new Position(x + earth.x, y + earth.y, z + earth.z);  // rectangular Heliocentric coordinates in AU
+    }
+
 }
